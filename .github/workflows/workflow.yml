@@ -33,4 +33,4 @@ jobs:
 
       - name: Deploy static site to GS bucket
         run: |-
-          gsutil -m rsync -R ./build gs://$GCS_BUCKET
+          gsutil -m rsync -r build gs://$GCS_BUCKET

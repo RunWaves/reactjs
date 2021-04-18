@@ -1,0 +1,36 @@
+name: ReactJs Deploy
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Node.js # setup Node.js in the runner
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12"
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node-
+      - run: npm ci # install dependencies
+      - run: npm run build --if-present # build the project
+      # - run: npm run test:unit # run the tests
+
+      - name: Setup - gcloud / gsutil
+        uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with:
+          service_account_key: ${{ secrets.GCS_SA_KEY }}
+          project_id: ${{ secrets.GCS_PROJECT }}
+          export_default_credentials: true
+
+      - name: Deploy static site to GS bucket
+        run: |-
+          gsutil -m rsync -R ./build gs://$GCS_BUCKET

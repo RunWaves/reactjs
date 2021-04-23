@@ -1,4 +1,5 @@
 import React from 'react';
+import "../../assets/styles/Login.css";
 import {useDispatch} from 'react-redux';
 import {showModal} from "../../app/features/modalSlice";
 import Modal from "../common/Modal";
@@ -21,8 +22,8 @@ export default function Login() {
 
     return (
         <>
-            <IconButton className="h-full" onClick={() => dispatch(showModal())}>
-                <PersonIcon/>
+            <IconButton className="h-full focus:outline-none" onClick={() => dispatch(showModal())}>
+                <PersonIcon className="text-white"/>
             </IconButton>
             <Modal>
                 <DialogTitle id="form-dialog-title">Login</DialogTitle>
@@ -32,22 +33,22 @@ export default function Login() {
                     </DialogContentText>
                     <Button
                         variant="outlined"
-                        startIcon={<FacebookIcon />}
+                        startIcon={<FacebookIcon className="facebook"/>}
                     >
                         Facebook
                     </Button>
                     <Button
                         variant="outlined"
-                        startIcon={<TwitterIcon />}
+                        startIcon={<TwitterIcon className="twitter"/>}
                     >
                         Twitter
                     </Button>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={login} color="primary">
+                    <Button onClick={login} variant="contained">
                         CREATE
                     </Button>
-                    <Button onClick={() => dispatch(showModal())} color="primary">
+                    <Button onClick={() => dispatch(showModal())} variant="contained">
                         CLOSE
                     </Button>
                 </DialogActions>

@@ -23,11 +23,9 @@ const Modal = ({title, description, content, action}) => {
                     </DialogContentText>
                     {content}
                 </DialogContent>
-                {action &&
                 <DialogActions>
                     {action}
                 </DialogActions>
-                }
             </Dialog>
         </>
     )

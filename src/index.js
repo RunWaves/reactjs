@@ -5,6 +5,7 @@ import App from './App';
 import store from './app/store'
 import { Provider } from 'react-redux'
 import reportWebVitals from './reportWebVitals';
+import _ from 'lodash';
 
 ReactDOM.render(
   <React.StrictMode>

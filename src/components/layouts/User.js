@@ -17,7 +17,7 @@ const User = ({user}) => {
 
     return (
         <>
-            <Avatar className="cursor-pointer" onClick={handleClick}>H</Avatar>
+            <Avatar className="cursor-pointer" onClick={handleClick}>A</Avatar>
 
             <Popover
                 id="simple-menu"
